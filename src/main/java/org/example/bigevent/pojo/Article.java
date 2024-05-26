@@ -1,7 +1,10 @@
 package org.example.bigevent.pojo;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
+@Data
 public class Article {
     private Integer id;//主键ID
     private String title;//文章标题
