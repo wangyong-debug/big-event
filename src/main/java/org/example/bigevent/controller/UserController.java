@@ -4,19 +4,25 @@ import org.example.bigevent.pojo.Result;
 import org.example.bigevent.pojo.User;
 import org.example.bigevent.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.Pattern;
+
 @RestController
 @RequestMapping("/user")
+@Validated
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     @PostMapping("/register")
-    public Result register(String username, String password) {
+    public Result register(@Pattern(regexp = "^\\s{5,16}$") String username,
+                           @Pattern(regexp = "^\\s{5,16}$") String password
+    ) {
 
         User u = userService.findByUsername(username);
         if (u == null){
