@@ -7,3 +7,7 @@ spring:
     url: jdbc:mysql://localhost:3306/big_event
     username: root
     password: admin
+#    开启数据库字段和Java对象的驼峰与下划线的转换
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

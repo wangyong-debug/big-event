@@ -5,11 +5,10 @@ import org.example.bigevent.pojo.User;
 import org.example.bigevent.service.UserService;
 import org.example.bigevent.utils.JwtUtil;
 import org.example.bigevent.utils.Md5Util;
+import org.example.bigevent.utils.ThreadLocalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Pattern;
 import java.util.HashMap;
@@ -58,4 +57,15 @@ public class UserController {
         }
         return Result.error("密码错误");
     }
+
+    @GetMapping("/userInfo")
+    public Result<User> findByUsername(){
+
+        Map<String, Object> map = ThreadLocalUtil.get();
+        String username = (String) map.get("username");
+
+        User user = userService.findByUsername(username);
+        return Result.success(user);
+    }
+
 }
