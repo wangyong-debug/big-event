@@ -7,6 +7,8 @@ import org.example.bigevent.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -24,5 +26,11 @@ public class UserServiceImpl implements UserService {
         //加密
         String md5String = Md5Util.getMD5String(password);
         userMapper.add(username, md5String);
+    }
+
+    @Override
+    public void update(User user) {
+        user.setUpdateTime(LocalDateTime.now());
+        userMapper.update(user);
     }
 }

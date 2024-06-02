@@ -1,9 +1,6 @@
 package org.example.bigevent.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.example.bigevent.pojo.User;
 
 @Mapper
@@ -16,4 +13,6 @@ public interface UserMapper {
             "values(#{username}, #{password}, now(), now())")
     void add(@Param("username") String username, @Param("password") String password);
 
+    @Update("update user set nickname = #{nickname}, email = #{email}, update_time = #{updateTime} where id = #{id}")
+    void update(User user);
 }
