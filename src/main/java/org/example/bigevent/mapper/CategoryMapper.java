@@ -5,7 +5,6 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.example.bigevent.pojo.Category;
-import org.example.bigevent.pojo.Result;
 
 import java.util.List;
 
